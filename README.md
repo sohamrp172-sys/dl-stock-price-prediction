@@ -34,19 +34,6 @@
 
 ---
 
-## 🎨 Screenshots
-
-### Dashboard Overview
-![Dashboard Overview](assets/screenshots/dashboard.png)
-
-### Technical Analysis
-![Technical Analysis](assets/screenshots/technical-analysis.png)
-
-### Predictions
-![Predictions](assets/screenshots/predictions.png)
-
----
-
 ## 🛠️ Tech Stack
 
 | Category | Technologies |
@@ -234,18 +221,6 @@ For detailed instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Here's how:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -286,5 +261,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] API endpoint for predictions
 - [ ] Docker containerization
 - [ ] CI/CD pipeline
+
 
 ---
