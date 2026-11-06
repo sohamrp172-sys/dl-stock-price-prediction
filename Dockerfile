@@ -26,9 +26,10 @@ COPY . .
 
 EXPOSE 8501
 
-# Healthcheck hits the Streamlit internal endpoint
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:8501/_stcore/health || exit 1
+# Note: health checks are handled by the hosting platform via an HTTP path
+# (see `healthCheckPath` in render.yaml). We intentionally do not hardcode a
+# container HEALTHCHECK here because the same image serves two different
+# processes (Streamlit on /_stcore/health and FastAPI on /).
 
 # Default: run the Streamlit dashboard. Honour $PORT for cloud platforms.
 CMD streamlit run app.py \
