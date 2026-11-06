@@ -4,6 +4,7 @@
 [![Keras](https://img.shields.io/badge/Keras-3-red.svg)](https://keras.io/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B.svg)](https://streamlit.io/)
+[![CI](https://github.com/sohamrp172-sys/dl-stock-price-prediction/actions/workflows/ci.yml/badge.svg)](https://github.com/sohamrp172-sys/dl-stock-price-prediction/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/tests-18%20passing-brightgreen.svg)](#-testing)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -222,6 +223,20 @@ uvicorn api.main:app --host 0.0.0.0 --port $PORT
 ### Option C — Any Docker host
 
 Build the image (above) and deploy to Fly.io, Railway, Cloud Run, etc. Honour the `$PORT` env var.
+
+---
+
+## 🔄 CI/CD
+
+Every push and pull request runs a GitHub Actions pipeline (`.github/workflows/ci.yml`) that:
+
+1. Installs dependencies on a clean Ubuntu + Python 3.11 runner.
+2. Runs the full `pytest` suite.
+3. Builds the Docker image to guarantee the container always ships.
+
+This keeps `main` green and the deployment artifact reproducible.
+
+> **Enabling CI:** the workflow file lives at `.github/workflows/ci.yml` in the repo. If you cloned via HTTPS with a token that lacks the `workflow` scope, GitHub will block pushes that add it — either push the file via the web UI, or re-authenticate with a token that has the `workflow` scope enabled.
 
 ---
 
