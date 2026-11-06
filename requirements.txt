@@ -1,29 +1,30 @@
-# Core Dependencies
+# ── Core ──────────────────────────────────────────────
 numpy>=1.24.0,<2.0.0
 pandas>=2.0.0,<3.0.0
 yfinance>=0.2.40
 
-# Deep Learning
-keras>=3.0.0
-jax>=0.4.20
-jaxlib>=0.4.20
+# ── Deep Learning (JAX backend — lightweight & cross-platform) ──
+# To use TensorFlow instead, set KERAS_BACKEND=tensorflow and swap the two
+# jax lines below for: tensorflow-cpu>=2.16.0
+keras>=3.0.0,<3.12.0
+jax==0.4.30
+jaxlib==0.4.30
 
-# Web Framework
+# ── Web / API ─────────────────────────────────────────
 streamlit>=1.30.0
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.6.0
 
-# Machine Learning
+# ── Machine Learning ──────────────────────────────────
 scikit-learn>=1.3.0
 
-# Visualization
-matplotlib>=3.7.0
-seaborn>=0.13.0
+# ── Visualization ─────────────────────────────────────
 plotly>=5.18.0
 
-# Technical Analysis
+# ── Technical Analysis ────────────────────────────────
 ta>=0.11.0
 
-# Data Processing
-openpyxl>=3.1.0
-
-# Development (optional)
-ipykernel>=6.25.0
+# ── Testing ───────────────────────────────────────────
+pytest>=8.0.0
+httpx>=0.27.0
