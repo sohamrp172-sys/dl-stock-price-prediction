@@ -3,12 +3,11 @@ numpy>=1.24.0,<2.0.0
 pandas>=2.0.0,<3.0.0
 yfinance>=0.2.40
 
-# ── Deep Learning (JAX backend — lightweight & cross-platform) ──
-# To use TensorFlow instead, set KERAS_BACKEND=tensorflow and swap the two
-# jax lines below for: tensorflow-cpu>=2.16.0
+# ── Deep Learning (TensorFlow backend — broad wheel support for cloud hosts) ──
+# Set KERAS_BACKEND=tensorflow (default in config). For local JAX dev instead,
+# install jax/jaxlib and set KERAS_BACKEND=jax.
 keras>=3.0.0,<3.12.0
-jax==0.4.30
-jaxlib==0.4.30
+tensorflow-cpu>=2.16.0,<2.18.0
 
 # ── Web / API ─────────────────────────────────────────
 streamlit>=1.30.0
@@ -24,7 +23,3 @@ plotly>=5.18.0
 
 # ── Technical Analysis ────────────────────────────────
 ta>=0.11.0
-
-# ── Testing ───────────────────────────────────────────
-pytest>=8.0.0
-httpx>=0.27.0

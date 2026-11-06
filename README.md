@@ -142,7 +142,7 @@ uvicorn api.main:app --reload
 #    → http://localhost:8000/docs
 ```
 
-> The default Keras backend is **JAX** (lightweight, cross-platform). To use TensorFlow, set `KERAS_BACKEND=tensorflow` and install `tensorflow-cpu`.
+> The default Keras backend is **TensorFlow** (broad wheel support for cloud hosts). For a lighter local setup you can instead `pip install jax==0.4.30 jaxlib==0.4.30` and set `KERAS_BACKEND=jax`. Dev/test extras live in `requirements-dev.txt`.
 
 ---
 

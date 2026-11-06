@@ -1,0 +1,8 @@
+# Development / testing dependencies (not needed at runtime on the host).
+# Install with: pip install -r requirements.txt -r requirements-dev.txt
+pytest>=8.0.0
+httpx>=0.27.0
+
+# Optional local JAX backend (alternative to TensorFlow):
+#   jax==0.4.30
+#   jaxlib==0.4.30
