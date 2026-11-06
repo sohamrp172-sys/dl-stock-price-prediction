@@ -1,5 +1,6 @@
 # 📈 AI-Powered Stock Price Predictor
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open%20App-brightgreen.svg)](https://ai-stock-predictor-ui.onrender.com)
 [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
 [![Keras](https://img.shields.io/badge/Keras-3-red.svg)](https://keras.io/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
@@ -12,10 +13,10 @@
 
 ### 🔗 Live Demo
 
-- **Dashboard:** `https://<your-app>.onrender.com`  _(add your link after deploying — see [Deployment](#-deployment))_
-- **API Docs (Swagger):** `https://<your-api>.onrender.com/docs`
+- **Dashboard:** [ai-stock-predictor-ui.onrender.com](https://ai-stock-predictor-ui.onrender.com)
+- **API Docs (Swagger):** [ai-stock-predictor-api.onrender.com/docs](https://ai-stock-predictor-api.onrender.com/docs)
 
-> Replace the placeholders above with your live URLs once deployed. The step-by-step guide below gets you a public link in minutes.
+> Hosted on Render via Docker. The free tier sleeps after ~15 min idle, so the first load may take a few seconds to cold-start.
 
 ---
 
