@@ -3,11 +3,14 @@ numpy>=1.24.0,<2.0.0
 pandas>=2.0.0,<3.0.0
 yfinance>=0.2.40
 
-# ── Deep Learning (TensorFlow backend — broad wheel support for cloud hosts) ──
-# Set KERAS_BACKEND=tensorflow (default in config). For local JAX dev instead,
-# install jax/jaxlib and set KERAS_BACKEND=jax.
+# ── Deep Learning ─────────────────────────────────────
+# JAX is the production default: far lighter on RAM than TensorFlow (important
+# on memory-constrained hosts like Render free/starter), and installs cleanly
+# in the Docker image on Python 3.11. To use TensorFlow instead, replace the two
+# jax lines with `tensorflow-cpu>=2.16.0,<2.18.0` and set KERAS_BACKEND=tensorflow.
 keras>=3.0.0,<3.12.0
-tensorflow-cpu>=2.16.0,<2.18.0
+jax[cpu]==0.4.30
+jaxlib==0.4.30
 
 # ── Web / API ─────────────────────────────────────────
 streamlit>=1.30.0

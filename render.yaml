@@ -1,19 +1,42 @@
+# Render blueprint — production deployment via Docker.
+# Deploys two services from the same image/repo:
+#   1. the Streamlit dashboard (web UI)
+#   2. the FastAPI backend (REST API + Swagger docs)
+#
+# Free plan sleeps after ~15 min of inactivity and cold-starts on the next
+# request. For an always-on production app, change `plan: free` to `plan: starter`.
+
 services:
+  # ── Interactive dashboard ───────────────────────────────────
   - type: web
-    name: ai-stock-price-predictor
-    runtime: python
+    name: ai-stock-predictor-ui
+    runtime: docker
+    dockerfilePath: ./Dockerfile
     region: oregon
     plan: free
     branch: main
-    buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true
     healthCheckPath: /_stcore/health
+    autoDeploy: true
     envVars:
-      - key: PYTHON_VERSION
-        value: "3.11.9"
       - key: KERAS_BACKEND
-        value: tensorflow
+        value: jax
       - key: STREAMLIT_SERVER_HEADLESS
         value: "true"
       - key: STREAMLIT_BROWSER_GATHER_USAGE_STATS
         value: "false"
+    # Dockerfile CMD already launches Streamlit on $PORT.
+
+  # ── REST API (FastAPI) ──────────────────────────────────────
+  - type: web
+    name: ai-stock-predictor-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    region: oregon
+    plan: free
+    branch: main
+    healthCheckPath: /
+    autoDeploy: true
+    dockerCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: KERAS_BACKEND
+        value: jax

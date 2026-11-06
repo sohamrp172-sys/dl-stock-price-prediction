@@ -17,10 +17,10 @@ MODEL_PATH = Path(os.getenv("MODEL_PATH", PROJECT_ROOT / "Stock_Predictions_Mode
 # ---------------------------------------------------------------------------
 # Keras / backend configuration
 # ---------------------------------------------------------------------------
-# TensorFlow is the default backend: it has broad, reliable wheel support on
-# cloud hosts (Streamlit Cloud, Render). Override via KERAS_BACKEND=jax for
-# lightweight local development if preferred.
-KERAS_BACKEND = os.getenv("KERAS_BACKEND", "tensorflow")
+# JAX is the default backend: lightweight on RAM (important on constrained
+# hosts) and the backend the bundled model was trained with. Override via
+# KERAS_BACKEND=tensorflow if deploying somewhere that prefers TF.
+KERAS_BACKEND = os.getenv("KERAS_BACKEND", "jax")
 
 # ---------------------------------------------------------------------------
 # Model / data hyper-parameters

@@ -198,31 +198,37 @@ The image is Python 3.11-slim based, installs CPU-only deps, and includes a heal
 
 ## 🌐 Deployment
 
-### Option A — Render (recommended, free tier)
+### Option A — Render via Docker (recommended for production)
 
-The repo ships a `render.yaml` blueprint.
+The repo ships a `render.yaml` blueprint that deploys **two Docker services** from
+the same image: the Streamlit dashboard and the FastAPI backend.
 
 1. Push this repo to GitHub.
 2. Go to [render.com](https://render.com) → **New** → **Blueprint**.
-3. Connect the repo. Render auto-detects `render.yaml`.
-4. Click **Apply**. First build takes a few minutes.
-5. Your live URL appears as `https://<service-name>.onrender.com`.
+3. Connect the repo. Render reads `render.yaml` and provisions both services.
+4. Click **Apply**. The first Docker build takes ~5 minutes.
+5. Two live URLs appear:
+   - Dashboard: `https://ai-stock-predictor-ui.onrender.com`
+   - API docs: `https://ai-stock-predictor-api.onrender.com/docs`
 
-To also expose the API, add a second Render Web Service with start command:
+> **Production notes**
+> - The free plan sleeps after ~15 min idle and cold-starts on the next hit. For an always-on app, change `plan: free` → `plan: starter` in `render.yaml`.
+> - The default backend is **JAX** — chosen because it's far lighter on RAM than TensorFlow, which matters on constrained instances. Switch to TensorFlow by editing `requirements.txt` and the `KERAS_BACKEND` env vars.
+> - Both services share the Docker image, so behaviour matches local and CI exactly.
+
+### Option B — Any Docker host
+
+The same `Dockerfile` runs on Fly.io, Railway, Google Cloud Run, AWS App Runner, etc.
+Build and run, honouring the `$PORT` env var:
+
+```bash
+docker build -t stock-predictor .
+docker run -p 8501:8501 -e PORT=8501 stock-predictor
 ```
-uvicorn api.main:app --host 0.0.0.0 --port $PORT
-```
 
-### Option B — Streamlit Community Cloud
+### Option C — Streamlit Community Cloud (quick demo)
 
-1. Push to GitHub.
-2. Go to [share.streamlit.io](https://share.streamlit.io) → **New app**.
-3. Pick the repo, branch `main`, main file `app.py`.
-4. Deploy. You get a `https://<app>.streamlit.app` link.
-
-### Option C — Any Docker host
-
-Build the image (above) and deploy to Fly.io, Railway, Cloud Run, etc. Honour the `$PORT` env var.
+For a fast public link (free, but less "production"): [share.streamlit.io](https://share.streamlit.io) → **New app** → repo, branch `main`, main file `app.py`. Uses `requirements.txt` + `runtime.txt`.
 
 ---
 

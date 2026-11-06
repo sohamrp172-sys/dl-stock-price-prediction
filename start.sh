@@ -4,7 +4,7 @@ set -e
 
 echo "Starting AI-Powered Stock Price Predictor..."
 
-export KERAS_BACKEND=${KERAS_BACKEND:-tensorflow}
+export KERAS_BACKEND=${KERAS_BACKEND:-jax}
 export STREAMLIT_SERVER_HEADLESS=true
 export STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
 
